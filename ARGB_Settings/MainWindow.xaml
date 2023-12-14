@@ -1,0 +1,112 @@
+﻿<Window x:Class="ARGB_Settings.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ARGB_Settings"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="500" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="0.2*"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <!-- Color Settings-->
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="0.15*"/>
+            </Grid.ColumnDefinitions>
+
+            <Rectangle x:Name="ColorShowRectangle" Grid.Column="1" 
+                       Stroke="Black" StrokeThickness="1" Fill="White" Margin="15"/>
+
+            <!-- Sliders, labels, textboxes and checkboxes -->
+            <Grid Grid.Column="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.4*"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="5*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <!-- Alpha-->
+                <CheckBox x:Name="AlphaCheckBox" Grid.Row="0" Grid.Column="0"  Style="{StaticResource StyleCheckBox}" 
+                          Click="CheckBox_Click" />
+                <DockPanel Grid.Row="0" Grid.Column="1">
+                    <Label Style="{StaticResource StyleLabel}" > Aplha:</Label>
+                    <TextBlock Text="{Binding ElementName=AlphaColor, Path=Value, UpdateSourceTrigger=PropertyChanged}"  
+                               Style="{StaticResource StyleTextBlock}"/>
+                </DockPanel>
+                <Slider x:Name="AlphaColor" Grid.Row="0" Grid.Column="2" Style="{StaticResource StyleSlider}"
+                        ValueChanged="ColorSlider_ValueChanged"/>
+                 
+                <!-- Red-->
+                <CheckBox x:Name="RedCheckBox" Grid.Row="1" Grid.Column="0"  Style="{StaticResource StyleCheckBox}"
+                          Click="CheckBox_Click"/>
+                <DockPanel Grid.Row="1" Grid.Column="1">
+                    <Label Style="{StaticResource StyleLabel}">Red:</Label>
+                    <TextBlock Text="{Binding ElementName=RedColor, Path=Value, UpdateSourceTrigger=PropertyChanged}"  
+                               Style="{StaticResource StyleTextBlock}"/>
+                </DockPanel>
+                <Slider x:Name="RedColor" Grid.Row="1" Grid.Column="2" Style="{StaticResource StyleSlider}"
+                        ValueChanged="ColorSlider_ValueChanged"/>
+
+                <!-- Green-->
+                <CheckBox x:Name="GreenCheckBox" Grid.Row="2" Grid.Column="0"  Style="{StaticResource StyleCheckBox}"
+                          Click="CheckBox_Click"/>
+                <DockPanel Grid.Row="2" Grid.Column="1">
+                    <Label Style="{StaticResource StyleLabel}">Green:</Label>
+                    <TextBlock Text="{Binding ElementName=GreenColor, Path=Value, UpdateSourceTrigger=PropertyChanged}" 
+                               Style="{StaticResource StyleTextBlock}"/>
+                </DockPanel>
+                <Slider x:Name="GreenColor" Grid.Row="2" Grid.Column="2" Style="{StaticResource StyleSlider}"
+                        ValueChanged="ColorSlider_ValueChanged"/>
+
+                <!-- Blue-->
+                <CheckBox x:Name="BlueCheckBox" Grid.Row="3" Grid.Column="0"  Style="{StaticResource StyleCheckBox}"
+                          Click="CheckBox_Click"/>
+                <DockPanel Grid.Row="3" Grid.Column="1">
+                    <Label Style="{StaticResource StyleLabel}">Blue:</Label>
+                    <TextBlock Text="{Binding ElementName=BlueColor, Path=Value, UpdateSourceTrigger=PropertyChanged}" 
+                               Style="{StaticResource StyleTextBlock}"/>
+                </DockPanel>
+                    <Slider x:Name="BlueColor" Grid.Row="3" Grid.Column="2" Style="{StaticResource StyleSlider}"
+                            ValueChanged="ColorSlider_ValueChanged"/>
+                
+            </Grid>
+        </Grid>
+
+        <Button Grid.Row="1" Content="Add" Width="100" HorizontalAlignment="Left" Margin="5"/>
+        
+        <!-- Save Color-->
+        <Grid Grid.Row="2">
+            <DataGrid x:Name="DataGridColors" 
+                    AutoGenerateColumns="False" 
+                    IsReadOnly="True" 
+                    Height="Auto">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Width="0.5*"/>
+                    <DataGridTextColumn Width="*"/>
+
+                    <DataGridTemplateColumn Width="*">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button
+                                            Margin="5"
+                                        Content="Delete"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+    </Grid>
+</Window>
