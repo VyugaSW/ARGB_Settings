@@ -20,10 +20,19 @@ namespace ARGB_Settings
     /// </summary>
     public partial class MainWindow : Window
     {
+        ColorsCollection colors;
+
         public MainWindow()
         {
             InitializeComponent();
+            colors = new ColorsCollection();
+            colors.AddColor("#00FF0128");
+            DataGridColors.ItemsSource = colors.Colors;
         }
+
+
+
+
         private void ColorSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             Color color = Color.FromArgb((byte)AlphaColor.Value, (byte)RedColor.Value, (byte)GreenColor.Value, (byte)BlueColor.Value);
@@ -58,6 +67,16 @@ namespace ARGB_Settings
                     break;
             }
             ChangeCheck((sender as CheckBox), sliderObject);
+        }
+
+
+        private void AddButton_Click(object sender, RoutedEventArgs e)
+        {
+            colors.AddColor(Color.FromArgb((byte)AlphaColor.Value, (byte)RedColor.Value, (byte)GreenColor.Value, (byte)BlueColor.Value));
+        }
+        private void DeleteButton_Click(object sender, RoutedEventArgs e)
+        {
+            colors.DeleteColor((sender as Button).DataContext as ARGBColor);
         }
     }
 }

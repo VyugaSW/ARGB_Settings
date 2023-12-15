@@ -84,7 +84,7 @@
             </Grid>
         </Grid>
 
-        <Button Grid.Row="1" Content="Add" Width="100" HorizontalAlignment="Left" Margin="5"/>
+        <Button Grid.Row="1" Content="Add" Width="100" HorizontalAlignment="Left" Margin="5" Click="AddButton_Click" />
         
         <!-- Save Color-->
         <Grid Grid.Row="2">
@@ -100,8 +100,9 @@
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <Button
-                                            Margin="5"
-                                        Content="Delete"/>
+                                        Margin="5"
+                                        Content="Delete" Click="DeleteButton_Click"
+                                    />
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
